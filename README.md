@@ -18,6 +18,10 @@ gcloud pubsub topics publish $topicName --message "PubSub Sample"
 ## subscription
 go run main.go
 
+or
+
+docker compose up
+
 ## env
 
 ### direnv
