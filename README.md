@@ -29,8 +29,7 @@ docker compose up
 direnv allowを実行する。
 
 ### dockerenv
-ローカルで動かす場合はenv.docker.sampleをenv.dockerに変更し値を入れる
-docker compose upを実行する。
+ローカルで動かす場合は.env.exampleを.envに変更し値を入れる
 
 ## credentials
 projectでpubsubの[Pub/Sub サブスクライバー]をつけたSAを作成してcredentialsフォルダに配置する。
