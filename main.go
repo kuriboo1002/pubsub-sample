@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"os"
 	"sync/atomic"
-	"time"
 )
 
 func main() {
@@ -14,10 +13,8 @@ func main() {
 	projectID := os.Getenv("PROJECT_ID")
 	subscriptionID := os.Getenv("SUBSCRIPTION_ID")
 
-	for {
-		if err := subscribe(ctx, projectID, subscriptionID); err != nil {
-			fmt.Println("error:%v", err)
-		}
+	if err := subscribe(ctx, projectID, subscriptionID); err != nil {
+		fmt.Println("error:%v", err)
 	}
 
 }
@@ -33,12 +30,6 @@ func subscribe(ctx context.Context, projectID, subscriptionID string) error {
 	defer client.Close()
 
 	sub := client.Subscription(subscriptionID)
-
-	// Receive messages for 10 seconds, which simplifies testing.
-	// Comment this out in production, since `Receive` should
-	// be used as a long running operation.
-	ctx, cancel := context.WithTimeout(ctx, 10*time.Second)
-	defer cancel()
 
 	var received int32
 	err = sub.Receive(ctx, func(_ context.Context, msg *pubsub.Message) {
